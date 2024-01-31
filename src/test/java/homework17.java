@@ -44,7 +44,7 @@ public class homework17 extends BaseTest{
             WebElement searchInput = driver.findElement(By.cssSelector("#searchForm>input"));
             searchInput.sendKeys(songName);
             searchInput.sendKeys(Keys.ENTER);
-            Thread.sleep(3000);
+            Thread.sleep(5000);
             WebElement likeButton = driver.findElement(By.xpath("//section[@id='searchExcerptsWrapper']//button[contains(@title, 'Riqui-Riqui')]/i[@data-test='btn-like-unliked']"));
             likeButton.click();
             WebElement favoritePlayListLink = driver.findElement(By.xpath("//li[contains(@class, 'favorites')]/a"));
