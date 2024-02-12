@@ -1,3 +1,4 @@
+import org.example.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -8,7 +9,7 @@ import org.testng.annotations.Test;
 import org.openqa.selenium.support.ui.WebDriverWait;
 public class homework17 extends BaseTest{
 
-
+LoginPage loginPage = null;
     @Test
 
 
@@ -42,7 +43,8 @@ public class homework17 extends BaseTest{
 /*fgfgfgfg*/
         public void addSongToPlayListTest() throws InterruptedException {
             String songName = "Riqui-Riqui";
-        login("dmytro.kravchuk@testpro.io", "Fr440003");
+            loginPage = new LoginPage(driver);
+        loginPage.login("dmytro.kravchuk@testpro.io", "Fr440003");
             WebElement searchInput = driver.findElement(By.cssSelector("#searchForm>input"));
             searchInput.sendKeys(songName);
             searchInput.sendKeys(Keys.ENTER);

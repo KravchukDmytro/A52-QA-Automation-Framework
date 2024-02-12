@@ -1,3 +1,5 @@
+import org.example.HomePage;
+import org.example.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,17 +11,20 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 public class LoginTests extends BaseTest {
+    LoginPage loginPage=null;
     @Test(enabled = false, description = "Check if user login with correct credentials", priority = 1, groups = "Smoke")
     public void loginTest() {
-        login("demo@class.com", "te$t$tudent");
-        WebElement avatar = driver.findElement(By.cssSelector("#userBadge img"));
-        Assert.assertTrue(avatar.isDisplayed()); // true
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login("demo@class.com", "te$t$tudent");
+        HomePage homePage = new HomePage(driver);
+        Assert.assertTrue(homePage.getAvatar().isDisplayed()); // true
     }
 
     @Test
     public void loginWithEmptyCredentials() {
-        WebElement logo = driver.findElement(By.cssSelector(".logo"));
-        login("demo@class.com", "");
-        Assert.assertTrue(logo.isDisplayed());
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login("demo@class.com", "");
+        Assert.assertTrue(loginPage.getLogo().isDisplayed());
+
     }
 }

@@ -1,3 +1,4 @@
+import org.example.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -6,13 +7,17 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+
 public class Homework21 extends BaseTest{
+    LoginPage loginPage = null;
+
     String newPlayListName = "NewPlayListName";
     String currentPlayListName = "HW17";
     @Test
     public void renamePlaylist() throws InterruptedException {
+        loginPage = new LoginPage(driver);
 
-        login("dmytro.kravchuk@testpro.io", "Fr440003");
+        loginPage.login("dmytro.kravchuk@testpro.io", "Fr440003");
         WebElement playList =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format("//section[@id='playlists']//li/a[text()='%s']", currentPlayListName))));
 Thread.sleep(3000);
         actions.contextClick(playList).perform();
