@@ -4,8 +4,9 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class Homework18 extends BaseTest{
+public class Homework18 extends BaseTest {
     LoginPage loginPage = null;
+
     @Test
     public void playSong() {
         loginPage = new LoginPage(driver);
@@ -16,9 +17,9 @@ public class Homework18 extends BaseTest{
 //nextSongButton.click();
         WebElement allSongs = driver.findElement(By.cssSelector("[href='#!/songs']"));
         allSongs.click();
-        WebElement  shuffleButton = driver.findElement(By.cssSelector("[data-test='btn-shuffle-all']"));
+        WebElement shuffleButton = driver.findElement(By.cssSelector("[data-test='btn-shuffle-all']"));
         shuffleButton.click();
-WebElement soundBar = driver.findElement(By.cssSelector("[data-test='soundbars']"));
+        WebElement soundBar = driver.findElement(By.cssSelector("[data-test='soundbars']"));
         Assert.assertTrue(soundBar.isDisplayed());
     }
 }

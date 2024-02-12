@@ -7,20 +7,19 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.openqa.selenium.support.ui.WebDriverWait;
-public class homework17 extends BaseTest{
 
-LoginPage loginPage = null;
+public class homework17 extends BaseTest {
+
+    LoginPage loginPage = null;
+
     @Test
-
-
-
 
 
 //WebElement addPlaylistButton = driver.findElement(By.cssSelector("[data-testid='sidebar-create-playlist-btn']"));
 //addPlaylistButton.click();
 //WebElement addPlaylist = driver.findElement(By.cssSelector("li[data-testid='playlist-context-menu-create-simple']"));
- //addPlaylist.click();
- //WebElement newPlaylistName = driver.findElement(By.cssSelector("i[title='Create a new playlist']"));
+    //addPlaylist.click();
+    //WebElement newPlaylistName = driver.findElement(By.cssSelector("i[title='Create a new playlist']"));
 //String namePlaylist = UUID.randomUUID().toString();
 
 
@@ -40,23 +39,22 @@ LoginPage loginPage = null;
 //WebElement submitButton = driver.findElement(By.xpath("//*[@id='songResultsWrapper']/header/div[3]/div/section[2]/form/button"));
 //submitButton.click();
 //ffgfgfgfgf
-/*fgfgfgfg*/
-        public void addSongToPlayListTest() throws InterruptedException {
-            String songName = "Riqui-Riqui";
-            loginPage = new LoginPage(driver);
+    /*fgfgfgfg*/
+    public void addSongToPlayListTest() throws InterruptedException {
+        String songName = "Riqui-Riqui";
+        loginPage = new LoginPage(driver);
         loginPage.login("dmytro.kravchuk@testpro.io", "Fr440003");
-            WebElement searchInput = driver.findElement(By.cssSelector("#searchForm>input"));
-            searchInput.sendKeys(songName);
-            searchInput.sendKeys(Keys.ENTER);
-          wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id='searchExcerptsWrapper']//button[contains(@title, 'Riqui-Riqui')]/i[@data-test='btn-like-unliked']")));
-            WebElement likeButton = driver.findElement(By.xpath("//section[@id='searchExcerptsWrapper']//button[contains(@title, 'Riqui-Riqui')]/i[@data-test='btn-like-unliked']"));
-            likeButton.click();
-            WebElement favoritePlayListLink = driver.findElement(By.xpath("//li[contains(@class, 'favorites')]/a"));
-            favoritePlayListLink.click();
-            String favoriteSong = "//section[@id='favoritesWrapper']//td[contains(text(), '%s')]";
-            WebElement favoriteSongElement = driver.findElement(By.xpath(String.format(favoriteSong, songName)));
-            Assert.assertTrue(favoriteSongElement.isDisplayed());
-
+        WebElement searchInput = driver.findElement(By.cssSelector("#searchForm>input"));
+        searchInput.sendKeys(songName);
+        searchInput.sendKeys(Keys.ENTER);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id='searchExcerptsWrapper']//button[contains(@title, 'Riqui-Riqui')]/i[@data-test='btn-like-unliked']")));
+        WebElement likeButton = driver.findElement(By.xpath("//section[@id='searchExcerptsWrapper']//button[contains(@title, 'Riqui-Riqui')]/i[@data-test='btn-like-unliked']"));
+        likeButton.click();
+        WebElement favoritePlayListLink = driver.findElement(By.xpath("//li[contains(@class, 'favorites')]/a"));
+        favoritePlayListLink.click();
+        String favoriteSong = "//section[@id='favoritesWrapper']//td[contains(text(), '%s')]";
+        WebElement favoriteSongElement = driver.findElement(By.xpath(String.format(favoriteSong, songName)));
+        Assert.assertTrue(favoriteSongElement.isDisplayed());
 
 
     }

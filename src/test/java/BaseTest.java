@@ -12,14 +12,15 @@ import org.testng.annotations.*;
 import java.time.Duration;
 
 public class BaseTest {
-     protected WebDriver driver = null;
-     protected WebDriverWait wait = null;
-protected Actions actions = null;
+    protected WebDriver driver = null;
+    protected WebDriverWait wait = null;
+    protected Actions actions = null;
 
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
+
     @BeforeMethod
     @Parameters("baseUrl")
     public void setUpDriver(String url) {
@@ -30,10 +31,10 @@ protected Actions actions = null;
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-      // String url = "https://qa.koel.app/";
+        // String url = "https://qa.koel.app/";
         driver.get(url);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-actions=new Actions(driver);
+        actions = new Actions(driver);
 
     }
 
