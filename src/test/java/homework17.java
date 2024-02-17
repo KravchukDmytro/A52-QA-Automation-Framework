@@ -1,9 +1,11 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
+import org.openqa.selenium.support.ui.WebDriverWait;
 public class homework17 extends BaseTest{
 
 
@@ -44,7 +46,7 @@ public class homework17 extends BaseTest{
             WebElement searchInput = driver.findElement(By.cssSelector("#searchForm>input"));
             searchInput.sendKeys(songName);
             searchInput.sendKeys(Keys.ENTER);
-            Thread.sleep(5000);
+          wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id='searchExcerptsWrapper']//button[contains(@title, 'Riqui-Riqui')]/i[@data-test='btn-like-unliked']")));
             WebElement likeButton = driver.findElement(By.xpath("//section[@id='searchExcerptsWrapper']//button[contains(@title, 'Riqui-Riqui')]/i[@data-test='btn-like-unliked']"));
             likeButton.click();
             WebElement favoritePlayListLink = driver.findElement(By.xpath("//li[contains(@class, 'favorites')]/a"));
