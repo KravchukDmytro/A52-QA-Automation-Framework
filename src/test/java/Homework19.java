@@ -1,33 +1,46 @@
-import org.example.HomePage;
-import org.example.LoginPage;
-import org.example.PlayListPage;
+import org.example.pages.HomePage;
+import org.example.pages.LoginPage;
+import org.example.pages.PlaylistPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.List;
 
 import static org.example.WaitUtils.waitUntilVisibilityOfElementLocatedBy;
 
+public class Homework19 extends BaseTest {
 
-public class Homework19 extends BaseTest{
     LoginPage loginPage = null;
     HomePage homePage = null;
+
     @Test
-    public void deletePlaylist() {
+    public void deletePlayListTest() throws InterruptedException {
         String playListName = "TestPlayListForDeleting";
-        loginPage = new LoginPage(driver);
-        loginPage.login("dmytro.kravchuk@testpro.io", "Fr440003");
-        homePage=new HomePage(driver);
-        homePage.createPlayList(actions, wait, playListName);
+        loginPage = new LoginPage(getDriver());
+        loginPage.login("demo@class.com", "te$t$tudent");
+        homePage = new HomePage(getDriver());
+
+        homePage.createPlaylist(actions, playListName);
         homePage.openPlayList(playListName);
-        PlayListPage playListPage = new PlayListPage(driver);
-        playListPage.deletePlayList(wait);
-        waitUntilVisibilityOfElementLocatedBy(driver, By.xpath("//section[@id='playlists']//li/a[text()='TestPlayListForDeleting']"));
-        Assert.assertTrue(homePage.getPlayListByName(playListName).isDisplayed());
+        PlaylistPage playlistPage = new PlaylistPage(getDriver());
+        playlistPage.deletePlayList(wait);
+        waitUntilVisibilityOfElementLocatedBy(getDriver(), By.xpath("//section[@id='playlists']//li/a[text()='TestPlayListForDeleting']"));
+        Assert.assertTrue(homePage.getPlaylistByName(playListName).isDisplayed());
+    }
 
-
+    @Test
+    public void addPlayListTest() throws InterruptedException {
+        String playListName = "TestPlayListForDeleting";
+        loginPage = new LoginPage(getDriver());
+        loginPage.login("demo@class.com", "te$t$tudent");
+        homePage = new HomePage(getDriver());
+        int previousSize = homePage.getAllPlayLists().size();
+        homePage.createPlayList(playListName);
+        int actualSize = homePage.getAllPlayLists().size();
+        Assert.assertNotEquals(actualSize, previousSize); // previousSize != actualSize
     }
 }
