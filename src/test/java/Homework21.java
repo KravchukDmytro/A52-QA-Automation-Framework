@@ -10,7 +10,7 @@ public class Homework21 extends BaseTest {
     HomePage homePage = null;
 
     @Test
-    public void renamePlayListTest()  {
+    public void renamePlayListTest() throws InterruptedException {
         LoginPage loginPage = new LoginPage(getDriver());
         loginPage.login("demo@class.com", "te$t$tudent");
         homePage = new HomePage(getDriver());
@@ -21,7 +21,7 @@ public class Homework21 extends BaseTest {
     }
 
     @AfterMethod
-    public void rollBackChanges()  {
+    public void rollBackChanges() throws InterruptedException {
         homePage = new HomePage(getDriver());
         homePage.renamePlayList(newPlayListName, currentPlayListName);
     }
