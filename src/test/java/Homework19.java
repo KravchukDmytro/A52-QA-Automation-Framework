@@ -1,3 +1,6 @@
+import org.example.HomePage;
+import org.example.LoginPage;
+import org.example.PlayListPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -6,26 +9,24 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static org.example.WaitUtils.waitUntilVisibilityOfElementLocatedBy;
+
 
 public class Homework19 extends BaseTest{
+    LoginPage loginPage = null;
+    HomePage homePage = null;
     @Test
     public void deletePlaylist() {
         String playListName = "TestPlayListForDeleting";
-        login("dmytro.kravchuk@testpro.io", "Fr440003");
-        WebElement addPlayListButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#playlists i[role='button']")));
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("i[data-testid='sidebar-create-playlist-btn']")));
-        addPlayListButton.click();
-        WebElement createPlayListButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid='playlist-context-menu-create-simple']")));
-        createPlayListButton.click();
-        WebElement playListNameInput = driver.findElement(By.cssSelector("[name='create-simple-playlist-form']>input"));
-        playListNameInput.sendKeys(playListName);
-        playListNameInput.sendKeys(Keys.ENTER);
-
-        WebElement playList =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id='playlists']//li/a[text()='TestPlayListForDeleting']")));
-        playList.click();
-        WebElement deleteButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(@class, 'btn-delete-playlist')]")));
-        deleteButton.click();
-        Assert.assertTrue(wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//section[@id='playlists']//li/a[text()='TestPlayListForDeleting']"))));
+        loginPage = new LoginPage(driver);
+        loginPage.login("dmytro.kravchuk@testpro.io", "Fr440003");
+        homePage=new HomePage(driver);
+        homePage.createPlayList(actions, wait, playListName);
+        homePage.openPlayList(playListName);
+        PlayListPage playListPage = new PlayListPage(driver);
+        playListPage.deletePlayList(wait);
+        waitUntilVisibilityOfElementLocatedBy(driver, By.xpath("//section[@id='playlists']//li/a[text()='TestPlayListForDeleting']"));
+        Assert.assertTrue(homePage.getPlayListByName(playListName).isDisplayed());
 
 
     }
