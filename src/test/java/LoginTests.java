@@ -1,25 +1,24 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.example.pages.HomePage;
+import org.example.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
-
 public class LoginTests extends BaseTest {
-    @Test(enabled = false, description = "Check if user login with correct credentials", priority = 1, groups = "Smoke")
+
+    LoginPage loginPage = null;
+
+    @Test(description = "Check if user login with correct credentials", priority = 1, groups = "Smoke")
     public void loginTest() {
-        login("demo@class.com", "te$t$tudent");
-        WebElement avatar = driver.findElement(By.cssSelector("#userBadge img"));
-        Assert.assertTrue(avatar.isDisplayed()); // true
+        loginPage = new LoginPage(getDriver());
+        loginPage.login("demo@class.com", "te$t$tudent");
+        HomePage homePage = new HomePage(getDriver());
+        Assert.assertFalse(homePage.getAvatar().isDisplayed()); // true
     }
 
-    @Test
-    public void loginWithEmptyCredentials() {
-        WebElement logo = driver.findElement(By.cssSelector(".logo"));
-        login("demo@class.com", "");
-        Assert.assertTrue(logo.isDisplayed());
+    @Test(groups = "Regression", dataProvider = "incorrectCredentials", dataProviderClass = DataProviderCredentials.class)
+    public void loginWithEmptyCredentials(String email, String password) {
+        loginPage = new LoginPage(getDriver());
+        loginPage.login(email, password);
+        Assert.assertTrue(loginPage.getLogo().isDisplayed());
     }
 }
