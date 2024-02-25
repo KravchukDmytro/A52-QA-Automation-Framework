@@ -11,7 +11,7 @@
                 </methods>
             </class>
             <class name="ProfileTest"/>
-            <class name="Homework16"/>
+            <class name="RegistrationNavigationTest"/>
         </classes>
     </test>
 

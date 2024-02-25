@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.example.WaitUtils.waitUntilVisibilityOfElementLocatedBy;
 
-public class Homework19 extends BaseTest {
+public class DeleteAndAddPlayListTest extends BaseTest {
 
     LoginPage loginPage = null;
     HomePage homePage = null;

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="TestNG">
+<suite name="TestNG" parallel="methods" thread-count="2">
     <parameter name="baseUrl" value="https://qa.koel.app/"/>
     <test name="Example Test" preserve-order="false">
         <classes>
-            <class name="BaseTest"/>
-            <class name="LoginTests"/>
-            <class name="Homework15"/>
-            <class name="Homework16"/>
-            <class name="Homework17"/>
-            <class name="Homework18"/>
-            <class name="Homework19"/>
-            <class name="Homework20"/>
-            <class name="Homework21"/>
+            <class name="CucumberRunner"/>
+            <!--            <class name="RegistrationNavigationTest"/>-->
+            <!--            <class name="ProfileTest"/>-->
+            <!--            <class name="AddSongToPlayListTest"/>-->
+            <!--            <class name="DeletePlayListTest"/>-->
+            <!--            <class name="PlaySongTest"/>-->
+            <!--            <class name="PlaySongByActionsTest"/>-->
+            <!--            <class name="RenamePlayListTest"/>-->
+            <!--            <class name="ThemeTest"/>-->
         </classes>
     </test>
 </suite>

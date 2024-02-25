@@ -2,17 +2,12 @@ import org.example.pages.HomePage;
 import org.example.pages.LoginPage;
 import org.example.pages.PlaylistPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
 import static org.example.WaitUtils.waitUntilVisibilityOfElementLocatedBy;
 
-public class Homework20 extends BaseTest {
+public class DeletePlayListTest extends BaseTest {
 
     LoginPage loginPage = null;
     HomePage homePage = null;

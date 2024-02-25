@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
-public class Homework21 extends BaseTest {
+public class RenamePlayListTest extends BaseTest {
     String newPlayListName = "New playlist";
     String currentPlayListName = "TestPro Playlist";
     HomePage homePage = null;
